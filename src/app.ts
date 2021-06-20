@@ -1,9 +1,7 @@
-import console from "console";
-
 const express=require('express');
 const app=express();
 app.use(express.json());
-const userSignSchema=require('./entity/User')
+import schema from "./entity/User";
 
 app.get('/api/v1',(req,res)=>{
     res.send({
@@ -13,21 +11,39 @@ app.get('/api/v1',(req,res)=>{
     });
     res.end();
 });
-app.post('/api/v1/user', async(req,res,next)=>{
+
+app.post('/api/v1/user',async(req,res,next)=>{
     try {
-        await userSignSchema.validateAsync(req.body);
+        await schema.validateAsync(req.body);
     }
     catch (err) { 
-        console.log('error found in data format!...request canceled!!!')
-        res.end();
+        console.log("erro in data format");
+        return next(err);
     }
-    return next();
+   return next();
 },(req,res,next)=>{
     console.log('request accepted');
     console.log(req.body);
+    res.send({
+        data:{
+            message:'request accepted',
+            username:req.body.username,
+            email:req.body.email,
+        },
+    });
     res.end();
+
 });
+
 app.use((err,req,res,next)=>{
-    
+    console.log(err);
+    res.send({
+        error:{
+            status:401,
+            name:err.name,
+            message:err.message
+        },
+
+    });
 });
 export default app;

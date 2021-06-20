@@ -1,12 +1,9 @@
-const Joi=require('joi');
+const Joi = require('joi');
 
 const schema = Joi.object({
-    username: Joi.string()
-        .alphanum()
-        .min(3)
-        .max(30)
-        .required(),
-    email:Joi.string().required(),
-    password:Joi.string().required()
+    username: Joi.string().required(),
+    email:Joi.string(),
+    password:Joi.string()
+
 });
 export default schema;
