@@ -1,9 +1,18 @@
-const Joi = require('joi');
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-const schema = Joi.object({
-    username: Joi.string().required(),
-    email:Joi.string(),
-    password:Joi.string()
+@Entity()
+export default class User {
 
-});
-export default schema;
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    password: string;
+
+    @Column()
+    email: string;
+
+}
