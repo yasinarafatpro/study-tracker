@@ -1,21 +1,18 @@
-import { getRepository } from "typeorm"
-import User from "../entity/User";
-const bcrypt = require('bcrypt');
-const createError=require('http-errprs');
+const Joi=require('joi');
+const createError=require('http-errors')
 
+const schema=Joi.object({
+    email:Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+    password:Joi.string().min(3).required()
+});
 
-const loginController=async(req,res,next)=>{
-    const user=await getRepository(User).findOneOrFail({
-        email:req.body.email
-    });
-
-    const match = await bcrypt.compare(req.body.password,user.password);
-
-    if(!match) {
-        return next(createError.BadRequest('Wrong Password..'));
-    }else{
-        const token=
+const loginValidator=async(req,res,next)=>{
+    try {
+        await schema.validateAsync(req.body);
+        return next();
     }
-
-    //...
-}
+    catch (err) { 
+        return next(createError.BadRequest(err.message));
+    };
+};
+export default loginValidator;

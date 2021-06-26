@@ -1,3 +1,4 @@
+require('dotenv').config();
 const http=require('http');
 import { createConnection } from "typeorm";
 import app from "./src/app";

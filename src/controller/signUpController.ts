@@ -1,6 +1,7 @@
-import User from "../src/entity/User";
 const bcrypt=require('bcrypt');
+import { userInfo } from "os";
 import { getRepository } from "typeorm";
+import User from "../entity/User";
 const saltRounds=10;
 
 const signUp=async(req,res,next)=>{
