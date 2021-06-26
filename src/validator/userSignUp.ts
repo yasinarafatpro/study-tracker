@@ -2,7 +2,7 @@
 const Joi = require('joi');
 
 const schema = Joi.object({
-    username: Joi.string()
+    name: Joi.string()
         .min(3)
         .max(30)
         .required(),
@@ -17,12 +17,12 @@ const signUpValidator=async(req,res,next)=>{
         console.log(req.body);
         res.send({
             data:{
-                name:req.body.username,
+                name:req.body.name,
                 email:req.body.email
             }
         })
-        res.end();
-        //return next();
+        return next();
+        // res.end();
     }catch(err){
         console.log('error found in data format!...request canceled');
         return next(err);

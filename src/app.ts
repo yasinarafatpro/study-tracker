@@ -1,4 +1,4 @@
-//import signUp from "../controller/signUpController";
+import signUp from "../controller/signUpController";
 import signUpValidator from "./validator/userSignUp";
 
 const express=require('express');
@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
     res.end();
 });
 
-app.post('/api/v1/user',signUpValidator);
+app.post('/api/v1/user',signUpValidator,signUp);
    
 app.use((err,req,res,next)=>{
     console.log(err);
