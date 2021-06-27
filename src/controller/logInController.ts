@@ -1,7 +1,7 @@
 import console from "console";
 import { getRepository } from "typeorm"
 import User from "../entity/User";
-import jwtSignToken from "./helper/jwt";
+import {jwtSignToken} from "./helper/jwt";
 const bcrypt = require('bcrypt');
 const createError=require('http-errors')
 
