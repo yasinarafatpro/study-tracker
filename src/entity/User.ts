@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import Subject from "./subject";
 
 @Entity()
 export default class User {
@@ -16,4 +17,7 @@ export default class User {
         unique:true
     })
     email: string;
+
+    @OneToMany(()=>Subject,(subject)=>subject.user)
+    subjects:Subject[];
 };

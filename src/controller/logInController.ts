@@ -21,7 +21,17 @@ const login=async(req,res,next)=>{
                 id:user.id
             });
             console.log(token);
-            res.end();
+            res.status(201).send({
+                data:{
+                    jwtToken:token,
+                    user:{
+                        id:user.id,
+                        name:user.name,
+                        email:user.email
+                    }
+                }
+                
+            });
         }
 
     }catch(err){
