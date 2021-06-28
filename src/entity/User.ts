@@ -18,6 +18,6 @@ export default class User {
     })
     email: string;
 
-    // @OneToMany(()=>Subject,(subject)=>subject.user)
-    // subjects:Subject[];
+    @OneToMany(() => Subject, (subject) => subject.user)
+    subjects: Subject[];
 };

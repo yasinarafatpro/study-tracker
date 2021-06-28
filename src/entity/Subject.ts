@@ -12,7 +12,7 @@ export default class Subject {
     @Column()
     discription: string;
 
-    // @ManyToOne(()=>User,(user)=>user.subjects)
-    // user:User;
+    @ManyToOne(() => User, (user) => user.subjects)
+    user: User;
 
 }

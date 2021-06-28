@@ -1,4 +1,6 @@
+
 const jwt = require('jsonwebtoken');
+const createError=require('http-errors')
 
 export const jwtSignToken=(data)=>{
     return new Promise((resolve,reject)=>{
@@ -17,7 +19,19 @@ export const verify=(token)=>{
         });
     });
 };
-export const isAuthorized=(req,res,next)=>{
-    console.log(req.headers);
-    res.end();
+export const isAuthorized=async(req,res,next)=>{
+    try {
+        if (!req.headers.authorization) {
+          return next(
+              
+              createError.Forbidden('authorization token is required'));
+        }
+        let getToken = req.headers.authorization;
+        getToken = getToken.split(' ')[1];
+        const decoded : any = await verify(getToken);
+        req.requesterUserId = decoded['id'];
+        return next();
+      } catch (err) {
+        return next(createError.Forbidden(err.message));
+      }
 };
