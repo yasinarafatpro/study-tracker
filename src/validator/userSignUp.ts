@@ -1,5 +1,6 @@
 
 const Joi = require('joi');
+const createError=require('http-errors')
 
 const schema = Joi.object({
     name: Joi.string()
@@ -25,7 +26,7 @@ const signUpValidator=async(req,res,next)=>{
         // res.end();
     }catch(err){
         console.log('error found in data format!...request canceled');
-        return next(err);
+        return next(createError.BadRequest(err.message));
     }
 };       
 export default signUpValidator; 

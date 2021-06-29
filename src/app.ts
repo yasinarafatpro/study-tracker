@@ -5,6 +5,7 @@ import signUpValidator from "./validator/userSignUp";
 import {isAuthorized} from './controller/helper/jwt'
 import subjectValidator from './validator/subjectValidator'
 import addSubject from "./controller/subjectController";
+import errorHandler from "./controller/helper/errorHandler";
 
 const express=require('express');
 const app=express();
@@ -19,15 +20,6 @@ app.post('/api/v1/user',signUpValidator,signUp);
 app.post('/api/v1/user/login',loginValidator,login);
 app.post('/api/v1/subject',subjectValidator,isAuthorized,addSubject)
    
-app.use((err,req,res,next)=>{
-    console.log(err);
-    res.send({
-        error:{
-            status:401,
-            name:err.name,
-            message:err.message
-     },
+app.use(errorHandler);
 
-    });
-});
 export default app;
