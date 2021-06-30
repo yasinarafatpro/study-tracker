@@ -7,7 +7,7 @@ export default class Subject {
     id: number;
     
     @Column()
-    subjectName: string;
+    name: string;
 
     @Column()
     discription: string;

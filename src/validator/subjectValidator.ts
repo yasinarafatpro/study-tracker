@@ -2,7 +2,7 @@ const Joi=require('joi');
 const createError=require('http-errors')
 
 const schema=Joi.object({
-    subjectName:Joi.string().required(),
+    name:Joi.string().required(),
     discription:Joi.string().min(10).required()
 });
 

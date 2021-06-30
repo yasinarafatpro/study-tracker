@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 
 app.post('/api/v1/user',signUpValidator,signUp);
 app.post('/api/v1/user/login',loginValidator,login);
-app.post('/api/v1/subject',subjectValidator,isAuthorized,addSubject)
+app.post('/api/v1/subject',isAuthorized,subjectValidator,addSubject)
    
 app.use(errorHandler);
 
