@@ -13,4 +13,18 @@ module.exports={
         password:'1234'
         },
     },
+    case_03:{
+        input:{
+            name:"arafat",
+            email:"arafat",
+            password:"1234"
+        },
+    },
+    case_04:{
+        input:{
+            name:'arafat',
+            email:'arafat1194@gmail.com',
+            password:''
+        },
+    },
 } ;

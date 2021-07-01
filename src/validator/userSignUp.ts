@@ -23,7 +23,7 @@ const signUpValidator=async(req,res,next)=>{
             }
         })
         return next();
-        // res.end();
+         res.end();
     }catch(err){
         console.log('error found in data format!...request canceled');
         return next(createError.BadRequest(err.message));
