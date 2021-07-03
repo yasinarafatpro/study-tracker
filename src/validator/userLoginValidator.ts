@@ -3,7 +3,7 @@ const createError=require('http-errors')
 
 const schema=Joi.object({
     email:Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
-    password:Joi.string().min(3).required()
+    password:Joi.string().min(3).required(),
 });
 
 const loginValidator=async(req,res,next)=>{

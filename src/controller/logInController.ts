@@ -1,4 +1,3 @@
-import console from "console";
 import { getRepository } from "typeorm"
 import User from "../entity/User";
 import {jwtSignToken} from "./helper/jwt";
@@ -21,6 +20,7 @@ const login=async(req,res,next)=>{
                 id:user.id
             });
             console.log(token);
+            res.cookie('authorization',`Bearer ${token}`);
             res.status(201).send({
                 data:{
                     jwtToken:token,
@@ -35,7 +35,7 @@ const login=async(req,res,next)=>{
         }
 
     }catch(err){
-        return next(createError.InvalidServerError(err.message));
+        return next(createError.InternalServerError(err.message));
     }
 };
 export default login;

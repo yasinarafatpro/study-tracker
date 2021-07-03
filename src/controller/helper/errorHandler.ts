@@ -4,7 +4,8 @@ export default function(err,req,res,next){
         error:{
             name:err.name,
             message:err.message,
-            statusCode:err.statusCode
+            statusCode:err.statusCode,
         },
     });
+    res.end();
 };
