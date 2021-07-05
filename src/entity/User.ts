@@ -1,11 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import BaseEntity from "./BaseEntity";
 import Subject from "./subject";
+import Topic from "./Topic";
 
 @Entity()
-export default class User {
-
-    @PrimaryGeneratedColumn()
-    id: number;
+export default class User extends BaseEntity{
 
     @Column()
     name: string;
@@ -18,6 +17,9 @@ export default class User {
     })
     email: string;
 
-    @OneToMany(() => Subject, (subject) => subject.user)
+    @OneToMany(() => Subject, (subject) => subject.user,{cascade:true})
     subjects: Subject[];
+
+    @OneToMany(()=>Topic,(topic)=>topic.user,{cascade:true})
+    topic:Topic[];
 };

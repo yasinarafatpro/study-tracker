@@ -26,7 +26,7 @@ export const isAuthorized=async(req,res,next)=>{
               
               createError.Forbidden('authorization token is required'));
         }
-        let getToken = req.headers.authorization;
+        let getToken = req.headers.authorization || req.cookies.authorization;
         getToken = getToken.split(' ')[1];
         const decoded : any = await verify(getToken);
         req.requesterUserId = decoded['id'];

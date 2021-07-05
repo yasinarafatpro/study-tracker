@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
 import BaseEntity from "./BaseEntity";
-import Topic from "./Topic";
+import Subject from "./subject";
 import User from "./User";
 
 @Entity()
-export default class Subject extends BaseEntity {
+export default class Topic extends BaseEntity{
     
     @Column()
     name: string;
@@ -15,7 +15,6 @@ export default class Subject extends BaseEntity {
     @ManyToOne(() => User, (user) => user.subjects,{onDelete:'CASCADE'})
     user: User;
 
-    @OneToMany(()=>Subject,(subject)=>subject,{onDelete:'CASCADE'})
-    topics:Topic[];
-
+    @ManyToOne(()=>Subject,(subject)=>subject.topics,{onDelete:'CASCADE'})
+     subject:Subject;
 }

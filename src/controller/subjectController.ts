@@ -9,8 +9,10 @@ const addSubject=async(req,res,next)=>{
     newsubject.discription=req.body.discription;
     newsubject.user=req.requesterUserId;
 
-    await getRepository(Subject).save(newsubject);
-    res.status(201).send();
+    const created= await getRepository(Subject).save(newsubject);
+    res.status(201).send({
+        data:created,
+    });
     }catch(err){
         return next(createError.InternalServerError(err.message));
     }

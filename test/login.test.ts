@@ -1,5 +1,5 @@
 import {getRepository} from 'typeorm';
-import User from '../src/entity/User'
+import User from '../src/entity/User';
 
 require('should');
 const request = require('node-fetch');
