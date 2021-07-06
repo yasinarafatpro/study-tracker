@@ -9,7 +9,8 @@
     "test:signup": "ts-mocha test/signup.test.ts",
     "test:login": "ts-mocha test/login.test.ts",
     "test:subject": "ts-mocha test/subject.test.ts",
-    "test.topic":"ts-mocha test/topic.test.ts"
+    "test:topic":"ts-mocha test/topic.test.ts",
+    "test:target":"ts-mocha test/Target.test.ts"
   },
   "keywords": [],
   "author": "",

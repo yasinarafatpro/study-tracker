@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
 import BaseEntity from "./BaseEntity";
+import Target from "./Target";
 import Topic from "./Topic";
 import User from "./User";
 
@@ -17,5 +18,8 @@ export default class Subject extends BaseEntity {
 
     @OneToMany(()=>Subject,(subject)=>subject,{onDelete:'CASCADE'})
     topics:Topic[];
+    
+    @OneToMany(()=>Target,(targets)=>targets,{cascade:true})
+    targets:Target[];
 
 }

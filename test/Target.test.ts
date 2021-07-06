@@ -1,20 +1,21 @@
 import { getRepository } from "typeorm";
 import User from "../src/entity/User";
-const cases=require('./cases/userCases');
+
+require('should')
 const request=require('node-fetch');
 const config=require('./config');
-require('should');
+const cases=require('./cases/userCases')
 
-describe('Topic Test',function(){
-    let authorization;
+describe('Target Test',function(){
     this.timeout(10000);
+    let authorization;
 
     before(function(){
         require('../index');
     })
     after(async function(){
         await getRepository(User).delete({
-            email:cases.case_01.input,
+            email:cases.case_01.email
         });
     });
     it('should create a new user',async()=>{
@@ -49,17 +50,19 @@ describe('Topic Test',function(){
         respJson.data.user.should.be.an.Object();
         authorization=respJson.data.jwtToken;
     });
-    it('Should add a subject',async()=>{
-        const resp=await request(`${config.host}/api/v1/topic`,{
+    it('should add a new target',async()=>{
+        const resp=await request(`${config.host}/api/v1/target`,{
             method:'POST',
             body:JSON.stringify({
-                name:'javascript',
-                discription:'programming language',
+                startDate:"2021-07-06T12:13:08+00:00",
+                endDate:"2021-07-06T12:13:08+00:00",
+                time:340,
+                note:"preparing for job apply and practice"
             }),
             headers:{
-                'Content-Type':'application/json',
-                'authorization':`Bearer ${authorization}`,
-                },
+            'Content-Type':'application/json',
+            'authorization':`Bearer ${authorization}`,
+        },
         });
         resp.should.be.an.Object();
         resp.should.have.property('status');
@@ -68,6 +71,5 @@ describe('Topic Test',function(){
         const respJson=await resp.json();
         respJson.should.be.an.Object();
         respJson.should.have.property('data');
-
     });
 });

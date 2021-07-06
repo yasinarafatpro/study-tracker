@@ -7,6 +7,7 @@ export const addTopic=async(req,res,next)=>{
         const newTopic=new Topic();
         newTopic.name=req.body.name;
         newTopic.discription=req.body.discription;
+        newTopic.subject=req.body.subject;
         newTopic.user=req.requesterUserId;
         newTopic.subject=req.body.subject ? req.body.subject:null;
         const createTopic=await getRepository(Topic).save(newTopic);

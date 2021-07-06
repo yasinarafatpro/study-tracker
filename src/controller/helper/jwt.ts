@@ -5,7 +5,7 @@ const createError=require('http-errors')
 export const jwtSignToken=(data)=>{
     return new Promise((resolve,reject)=>{
         jwt.sign(data,process.env.JWT_SECRET, function(err, token) {
-            console.log(token);
+            //console.log(token);
             if(err) reject(err);
             resolve(token);
           });

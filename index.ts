@@ -6,6 +6,7 @@ import 'reflect-metadata';
 import User from "./src/entity/User";
 import Subject from "./src/entity/subject";
 import Topic from "./src/entity/Topic";
+import Target from "./src/entity/Target";
 
 const server=http.createServer(app);
 
@@ -18,7 +19,7 @@ const server=http.createServer(app);
             username: 'postgres',
             password: '12',
             database: 'nodetsdb',
-            entities: [User,Subject,Topic],
+            entities: [User,Subject,Topic,Target],
             synchronize: true,
             logging: false,
         });
