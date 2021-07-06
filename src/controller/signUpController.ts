@@ -19,7 +19,7 @@ const signUp=async(req,res,next)=>{
         },
     });
     }catch(err){
-        return next(createError.BadRequest(err.message));
+        return next(new createError.BadRequest(err.message));
     }
 };
 export default signUp;

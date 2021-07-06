@@ -1,5 +1,5 @@
-import { getRepository } from "typeorm";
-import User from "../src/entity/User";
+import { getRepository } from 'typeorm';
+import User from '../src/entity/User';
 
 require('should')
 const request=require('node-fetch');
@@ -15,7 +15,7 @@ describe('Target Test',function(){
     })
     after(async function(){
         await getRepository(User).delete({
-            email:cases.case_01.email
+            email:cases.case_01.input.email,
         });
     });
     it('should create a new user',async()=>{

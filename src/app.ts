@@ -1,15 +1,17 @@
-import login from "./controller/logInController";
-import signUp from "./controller/signUpController";
-import loginValidator from "./validator/userLoginValidator";
-import signUpValidator from "./validator/userSignUp";
-import {isAuthorized} from './controller/helper/jwt'
-import subjectValidator from './validator/subjectValidator'
-import addSubject from "./controller/subjectController";
-import errorHandler from "./controller/helper/errorHandler";
-import {topicValidator} from "./validator/topicValidator";
-import { addTopic } from "./controller/topicController";
-import { targetValidator } from "./validator/userTargetValidator";
-import { addTarget } from "./controller/targetController";
+import login from './controller/logInController';
+import signUp from './controller/signUpController';
+import loginValidator from './validator/userLoginValidator';
+import signUpValidator from './validator/userSignUp';
+import {isAuthorized} from './controller/helper/jwt';
+import subjectValidator from './validator/subjectValidator';
+import addSubject from './controller/subjectController';
+import errorHandler from './controller/helper/errorHandler';
+import {topicValidator} from './validator/topicValidator';
+import { addTopic } from './controller/topicController';
+import { targetValidator } from './validator/userTargetValidator';
+import { addTarget } from './controller/targetController';
+import { logValidator } from './validator/logValidator';
+import { logController } from './controller/logController';
 
 const express=require('express');
 const app=express();
@@ -27,6 +29,7 @@ app.post('/api/v1/user/login',loginValidator,login);
 app.post('/api/v1/subject',isAuthorized,subjectValidator,addSubject)
 app.post('/api/v1/topic',isAuthorized,topicValidator,addTopic);
 app.post('/api/v1/target',isAuthorized,targetValidator,addTarget);
+app.post('/api/v1/log',isAuthorized,logValidator,logController);
    
 app.use(errorHandler);
 

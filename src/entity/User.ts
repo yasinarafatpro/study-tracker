@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import BaseEntity from "./BaseEntity";
+import { Log } from "./Log";
 import Subject from "./subject";
 import Target from "./Target";
 import Topic from "./Topic";
@@ -26,4 +27,7 @@ export default class User extends BaseEntity{
 
     @OneToMany(()=>Target,(targets)=>targets.user,{cascade:true})
     targets:Target[];
+
+    @OneToMany(()=>Log,(logs)=>logs.user,{cascade:true})
+    logs:Log[];
 };

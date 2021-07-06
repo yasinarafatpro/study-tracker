@@ -16,7 +16,7 @@ describe('Subject Test',function(){
     });
     after(async function(){
         await getRepository(User).delete({
-            email:cases.case_01.input,
+            email:cases.case_01.input.email,
         });
     });
     it('should create a new user',async()=>{

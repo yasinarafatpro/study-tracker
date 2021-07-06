@@ -10,7 +10,8 @@
     "test:login": "ts-mocha test/login.test.ts",
     "test:subject": "ts-mocha test/subject.test.ts",
     "test:topic":"ts-mocha test/topic.test.ts",
-    "test:target":"ts-mocha test/Target.test.ts"
+    "test:target":"ts-mocha test/Target.test.ts",
+    "test:log":"ts-mocha test/Log.test.ts"
   },
   "keywords": [],
   "author": "",

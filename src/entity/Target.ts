@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import BaseEntity from "./BaseEntity";
+import { Log } from "./Log";
 import Subject from "./subject";
 import Topic from "./Topic";
 import User from "./User";
@@ -19,6 +20,9 @@ export default class Target extends BaseEntity{
     user:User;
     @ManyToOne(()=>Subject,(subject)=>subject.targets,{onDelete:'CASCADE'})
     subject:Subject;
-    @ManyToOne(()=>Topic,(topic)=>topic.targets)
+    @ManyToOne(()=>Topic,(topic)=>topic.targets,{onDelete:'CASCADE'})
     topic:Topic;
+
+    @OneToMany(()=>Log,(logs)=>logs.target,{cascade:true})
+    logs:Log[];
 }
