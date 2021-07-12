@@ -30,6 +30,7 @@ app.post('/api/v1/subject',isAuthorized,subjectValidator,addSubject)
 app.post('/api/v1/topic',isAuthorized,topicValidator,addTopic);
 app.post('/api/v1/target',isAuthorized,targetValidator,addTarget);
 app.post('/api/v1/log',isAuthorized,logValidator,logController);
+
    
 app.use(errorHandler);
 

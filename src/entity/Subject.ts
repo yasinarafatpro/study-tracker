@@ -20,10 +20,10 @@ export default class Subject extends BaseEntity {
     @OneToMany(()=>Topic,(topics)=>topics.subject,{onDelete:'CASCADE'})
     topics:Topic[];
     
-    @OneToMany(()=>Target,(targets)=>targets.subject,{cascade:true})
-    targets:Target[];
+    // @OneToMany(()=>Target,(targets)=>targets.subject,{cascade:true})
+    // targets:Target[];
 
-    @OneToMany(()=>Log,(logs)=>logs.subject,{cascade:true})
-    logs:Log[];
+    // @OneToMany(()=>Log,(logs)=>logs.subject,{cascade:true})
+    // logs:Log[];
 
 }

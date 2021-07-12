@@ -23,6 +23,6 @@ export default class Topic extends BaseEntity{
     @OneToMany(()=>Target,(targets)=>targets.topic,{cascade:true})
      targets:Target[];
 
-     @OneToMany(()=>Log,(logs)=>logs.topic,{cascade:true})
-     logs:Log[];
+    //  @OneToMany(()=>Log,(logs)=>logs.topic,{cascade:true})
+    //  logs:Log[];
 }

@@ -18,8 +18,8 @@ export default class Target extends BaseEntity{
 
     @ManyToOne(()=>User,(user)=>user.targets,{onDelete:'CASCADE'})
     user:User;
-    @ManyToOne(()=>Subject,(subject)=>subject.targets,{onDelete:'CASCADE'})
-    subject:Subject;
+    // @ManyToOne(()=>Subject,(subject)=>subject.targets,{onDelete:'CASCADE'})
+    // subject:Subject;
     @ManyToOne(()=>Topic,(topic)=>topic.targets,{onDelete:'CASCADE'})
     topic:Topic;
 
