@@ -1,6 +1,7 @@
 const bcrypt=require('bcrypt');
-import { getRepository } from 'typeorm';
+import { getCustomRepository, getRepository } from 'typeorm';
 import User from '../entity/User';
+import { UserRepository } from '../repositorys/sign-Repository';
 const saltRounds=10;
 const createError=require('http-errors')
 
@@ -10,7 +11,8 @@ const signUp=async(req,res,next)=>{
     newUser.name=req.body.name;
     newUser.email=req.body.email;
     newUser.password=await bcrypt.hash(req.body.password,saltRounds);
-    const created= await getRepository(User).save(newUser);
+    const signUser=getCustomRepository(UserRepository);
+    const created= await signUser.createSignUser(newUser);
     res.status(201).send({
         data:{
             name:created.name,

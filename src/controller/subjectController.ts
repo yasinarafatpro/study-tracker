@@ -1,5 +1,6 @@
-import { getRepository } from "typeorm";
-import Subject from "../entity/subject"
+import { getCustomRepository, getRepository } from 'typeorm';
+import Subject from '../entity/subject';
+import { SubjectRepository } from '../repositorys/subject-Repository';
 const createError =require('http-errors')
 
 const addSubject=async(req,res,next)=>{
@@ -8,8 +9,8 @@ const addSubject=async(req,res,next)=>{
     newsubject.name=req.body.name;
     newsubject.discription=req.body.discription;
     newsubject.user=req.requesterUserId;
-
-    const created= await getRepository(Subject).save(newsubject);
+    const sunbjectRepository=getCustomRepository(SubjectRepository);
+    const created= await sunbjectRepository.createSubject(newsubject);
     res.status(201).send({
         data:created,
     });
