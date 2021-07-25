@@ -17,6 +17,7 @@ export const addTopic=async(req,res,next)=>{
             data:createUserTopic
         })
     }catch(err){
+        console.log(err.name);
         return next(new createError.InternalServerError(err.message));
     }
 }
