@@ -1,4 +1,3 @@
-
 import { getRepository } from 'typeorm';
 import User from '../src/entity/User';
 const cases=require('./cases/userCases');
@@ -104,4 +103,25 @@ describe('Topic Test',function(){
         expect(respJson.data).to.have.a.property('subject');
         expect(respJson.data.subject).to.equal(subject);
     });
+    it('should add topic without subject',async()=>{
+        const url=`${config.host}/api/v1/topic`;
+        const data={
+            name:'test topic',
+            discription:'test topic discription'
+        }
+        const resp=await sendRequest(url,data,authorization);
+        expect(resp).to.have.property('status');
+        expect(resp.status).to.equal(201);
+    });
+    it('should not add topic -subject assertion ot match',
+    async()=>{
+        const url=`${config.host}/api/v1/topic`;
+        const data={
+            name:'test topic',
+            discription:'test topic discription',
+            subject:1000,
+        }
+        const resp=await sendRequest(url,data,authorization);
+        expect(resp).to.have.property('status');
+    })
 });
