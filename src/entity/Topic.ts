@@ -14,15 +14,13 @@ export default class Topic extends BaseEntity{
     @Column()
     discription: string;
 
-    @ManyToOne(() => User, (user) => user.topic,{onDelete:'CASCADE'})
+    @ManyToOne(() => User, (user) => user.topics,{onDelete:'CASCADE'})
     user: User;
 
     @ManyToOne(()=>Subject,(subject)=>subject.topics,{onDelete:'CASCADE'})
      subject:Subject;
 
-    @OneToMany(()=>Target,(targets)=>targets.topic,{cascade:true})
+    @OneToMany(()=>Target,(target)=>target.topic,{cascade:true})
      targets:Target[];
 
-    //  @OneToMany(()=>Log,(logs)=>logs.topic,{cascade:true})
-    //  logs:Log[];
 }

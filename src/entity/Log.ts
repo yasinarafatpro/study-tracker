@@ -22,12 +22,6 @@ export class Log extends BaseEntity{
     @ManyToOne(()=>User,(user)=>user.logs,{onDelete:'CASCADE'})
     user:User;
 
-    // @ManyToOne(()=>Subject,(subject)=>subject.logs,{onDelete:'CASCADE'})
-    // subject:Subject;
-
     @ManyToOne(()=>Target,(target)=>target.logs,{onDelete:'CASCADE'})
     target:Target;
-
-    // @ManyToOne(()=>Topic,(topic)=>topic.logs,{onDelete:'CASCADE'})
-    // topic:Topic;
 }

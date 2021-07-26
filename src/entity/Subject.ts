@@ -17,13 +17,6 @@ export default class Subject extends BaseEntity {
     @ManyToOne(() => User, (user) => user.subjects,{onDelete:'CASCADE'})
     user: User;
 
-    @OneToMany(()=>Topic,(topics)=>topics.subject,{onDelete:'CASCADE'})
+    @OneToMany(()=>Topic,(topics)=>topics.subject,{cascade:true})
     topics:Topic[];
-    
-    // @OneToMany(()=>Target,(targets)=>targets.subject,{cascade:true})
-    // targets:Target[];
-
-    // @OneToMany(()=>Log,(logs)=>logs.subject,{cascade:true})
-    // logs:Log[];
-
 }

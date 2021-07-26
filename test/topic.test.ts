@@ -1,4 +1,4 @@
-import console from 'console';
+
 import { getRepository } from 'typeorm';
 import User from '../src/entity/User';
 const cases=require('./cases/userCases');
@@ -10,7 +10,7 @@ const expect=chai.expect
 
 const sendRequest=async(url,data,authorization)=>{
     const resp=await request(url,{
-        method:'post',
+        method:'POST',
         body:JSON.stringify(data),
         headers:{
             'Content-Type':'application/json',
@@ -88,6 +88,20 @@ describe('Topic Test',function(){
         subject=respJson.data.id;
     });
     it('should add a new topic',async()=>{
-        
-    })
+        const url=`${config.host}/api/v1/topic`;
+        const data={
+            name:'test topic',
+            discription:'test topic discription',
+            subject:subject
+        }
+        const resp=await sendRequest(url,data,authorization)
+        expect(resp).to.have.property('status');
+        expect(resp.status).to.equal(201);
+        const respJson=await resp.json();
+        expect(respJson).to.be.an('object');
+        expect(respJson).to.have.a.property('data');
+        expect(respJson.data).to.be.an('object');
+        expect(respJson.data).to.have.a.property('subject');
+        expect(respJson.data.subject).to.equal(subject);
+    });
 });

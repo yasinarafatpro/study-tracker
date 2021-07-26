@@ -23,11 +23,11 @@ export default class User extends BaseEntity{
     subjects: Subject[];
 
     @OneToMany(()=>Topic,(topic)=>topic.user,{cascade:true})
-    topic:Topic[];
+    topics:Topic[];
 
-    @OneToMany(()=>Target,(targets)=>targets.user,{cascade:true})
+    @OneToMany(()=>Target,(target)=>target.user,{cascade:true})
     targets:Target[];
 
-    @OneToMany(()=>Log,(logs)=>logs.user,{cascade:true})
+    @OneToMany(()=>Log,(log)=>log.user,{cascade:true})
     logs:Log[];
 };
