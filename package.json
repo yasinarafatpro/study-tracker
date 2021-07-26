@@ -9,9 +9,9 @@
     "test:signup": "ts-mocha test/signup.test.ts",
     "test:login": "ts-mocha test/login.test.ts",
     "test:subject": "ts-mocha test/subject.test.ts",
-    "test:topic":"ts-mocha test/topic.test.ts",
-    "test:target":"ts-mocha test/Target.test.ts",
-    "test:log":"ts-mocha test/Log.test.ts"
+    "test:topic": "ts-mocha test/topic.test.ts",
+    "test:target": "ts-mocha test/Target.test.ts",
+    "test:log": "ts-mocha test/Log.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +20,10 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.12.4",
     "bcrypt": "^5.0.1",
+    "chai": "^4.3.4",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
+    "expect": "^27.0.6",
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
     "joi": "^17.4.0",
