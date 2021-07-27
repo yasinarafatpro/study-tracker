@@ -81,8 +81,60 @@ describe('Target Test',function(){
         expect(respJson).to.have.a.property('data');
         expect(respJson.data).to.be.an('object'); 
         expect(respJson.data).to.have.a.property('id');
-        topic = respJson.data.id;
-        console.log(topic);  
+        topic = respJson.data.id; 
     });
+    it('should add a target for spacefic topic',async()=>{
+        const url=`${config.host}/api/v1/target`;
+        const data={
+            startDate:'2021-06-25T06:47:50.580Z',
+            endDate:'2021-07-27T06:47:50.580Z',
+            time:100,
+            note:'programming language test',
+            topic:topic
+        }
+        const resp=await sendRequest(url,data,authorization);
+        expect(resp).to.have.property('status');
+        expect(resp.status).to.equal(201);
+        const respJson=await resp.json();
+        expect(respJson).to.be.an('object');
+    })
+    it('should not add target for spacefic topic',async()=>{
+        const url=`${config.host}/api/v1/target`;
+        const data={
+            startDate:'',//invalid data
+            endDate:'2021-07-27T06:47:50.580Z',
+            time:100,
+            note:'programming language test',
+            topic:topic
+        }
+        const resp=await sendRequest(url,data,authorization);
+        expect(resp).to.have.property('status');
+        expect(resp.status).to.not.equal(201);
+        const respJson=await resp.json();
+        expect(respJson).to.be.an('object');
+        expect(respJson).to.have.a.property('error');
+        expect(respJson.error).to.be.an('object');
+        expect(respJson.error).to.have.a.property('statusCode');
+        expect(respJson.error.statusCode).to.equal(400);
+    });
+    it('should not add target for invalid topic',async()=>{
+        const url=`${config.host}/api/v1/target`;
+        const data={
+            startDate:'2021-07-25T06:47:50.580Z',
+            endDate:'2021-07-27T06:47:50.580Z',
+            time:100,
+            note:'programming language test',
+            topic:100//invalid topic
+        }
+        const resp=await sendRequest(url,data,authorization);
+        expect(resp).to.have.property('status');
+        expect(resp.status).to.not.equal(201);
+        const respJson=await resp.json();
+        expect(respJson).to.be.an('object');
+        expect(respJson).to.have.a.property('error');
+        expect(respJson.error).to.be.an('object');
+        expect(respJson.error).to.have.a.property('statusCode');
+        expect(respJson.error.statusCode).to.equal(400);
+    })
 
 });
