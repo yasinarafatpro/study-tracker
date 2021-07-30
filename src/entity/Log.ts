@@ -1,10 +1,8 @@
-import { Column, Entity, ManyToOne } from "typeorm";
-import BaseEntity from "./BaseEntity";
-import { StudyTime } from "./enam/StudyTime";
-import Subject from "./subject";
-import Target from "./Target";
-import Topic from "./Topic";
-import User from "./User";
+import { Column, Entity, ManyToOne } from 'typeorm';
+import BaseEntity from './BaseEntity';
+import { StudyTime } from './enam/StudyTime';
+import Target from './Target';
+import User from './User';
 
 @Entity()
 export class Log extends BaseEntity{
