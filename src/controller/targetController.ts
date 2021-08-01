@@ -1,7 +1,7 @@
-import { getCustomRepository, getRepository } from "typeorm";
-import Target from "../entity/Target"
-import { TaretRepository } from "../repositorys/target-Repository";
-import { TopicRepository } from "../repositorys/topic-Repository";
+import { getCustomRepository, getRepository } from 'typeorm';
+import Target from '../entity/Target'
+import { TaretRepository } from '../repositorys/target-Repository';
+import { TopicRepository } from '../repositorys/topic-Repository';
 const createError=require('http-errors')
 
 export const addTarget=async(req,res,next)=>{
@@ -14,6 +14,7 @@ export const addTarget=async(req,res,next)=>{
     newTarget.endDate=endDate;
     newTarget.time=time;
     newTarget.note=note;
+    newTarget.user=req.requesterUserId;
     newTarget.topic=topic
     const targetRepository=getCustomRepository(TaretRepository);
     const created=await targetRepository.createTarget(newTarget);

@@ -1,9 +1,8 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
-import BaseEntity from "./BaseEntity";
-import { Log } from "./Log";
-import Subject from "./subject";
-import Topic from "./Topic";
-import User from "./User";
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import BaseEntity from './BaseEntity';
+import { Log } from './Log';
+import Topic from './Topic';
+import User from './User';
 
 @Entity()
 export default class Target extends BaseEntity{

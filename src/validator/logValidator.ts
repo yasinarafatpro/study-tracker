@@ -1,4 +1,5 @@
-const Joi=require('joi');
+//const Joi=require('joi');
+import Joi from 'joi';
 const createError=require('http-errors');
 
 const schema=Joi.object({

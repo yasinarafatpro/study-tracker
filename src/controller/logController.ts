@@ -9,22 +9,24 @@ export const logController=async(req,res,next)=>{
         const{studyTime,time,note,target}=req.body;
 
         await getCustomRepository(TaretRepository)
-        .isUserAssociated(target,req.requesterUserId);
+            .isUserAssociated(target,req.requesterUserId);
         //create new log
         const newLog=new Log();
         newLog.studyTime=studyTime;
         newLog.time=time;
         newLog.note=note;
+        //newLog.user=req.requesterUserId;
         newLog.target=target;
-        const created= await getCustomRepository(logRepository).createLog(newLog);
+        newLog.user=req.requesterUserId;
+        const createTargetLog= await getCustomRepository(logRepository).createLog(newLog);
         return res.status(201).send({
-           data:created,
+           data:createTargetLog,
        });
 
     }catch(err){
         console.log(err.name);
         if(err.name=='EntityNotFound'){
-            return next(new createError.BadRequest('Entity not currect '+err.message));
+            return next(new createError.BadRequest('Entity not currect.... '+err.message));
         }
         return next(new createError.InternalServerError(err.message));
     };

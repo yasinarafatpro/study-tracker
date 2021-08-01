@@ -13,7 +13,9 @@ export class Log extends BaseEntity{
     })
     studyTime:StudyTime;
     @Column()
+    
     time:number;
+
     @Column()
     note:string;
 

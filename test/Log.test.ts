@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { getRepository } from 'typeorm';
 import User from '../src/entity/User';
 
@@ -121,18 +122,15 @@ describe('Log test',function(){
         expect(resp.status).to.equal(201);
         const respJson=await resp.json();
         expect(respJson.data).to.be.an('object');
-        console.log(respJson.data);
         target=respJson.data.id;
-        console.log(target);
-
-    });
+        });
     it('Should add a new Log', async () => {
         const url = `${config.host}/api/v1/log`;
         const data = {
           studyTime: 'MORNING',
           time: 180,
           note: 'morning study entry to test',
-          target: target,
+          target:target,
         };
         const resp = await sendRequest(url, data, authorization);
         expect(resp).to.have.property('status');
@@ -142,4 +140,18 @@ describe('Log test',function(){
         expect(respJson).to.have.a.property('data');
         expect(respJson.data).to.be.an('object');
       });
+      it('should not add log for invalid target',async()=>{
+          const url=`${config.host}/api/v1/log`;
+          const data={
+              studyTime:'MORNING',
+              time:190,
+              note:'morning study to run test',
+              target:10000,
+          }
+          const resp=await sendRequest(url,data,authorization);
+          expect(resp).to.have.property('status');
+          expect(resp.status).to.equal(400);
+          const respJson=await resp.json();
+          expect(respJson).to.be.an('object');
+      })
 })
